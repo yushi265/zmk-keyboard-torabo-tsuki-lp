@@ -41,11 +41,11 @@
 
         layer_2 {
             bindings = <
-&none  &none  &none  &none  &none  &none                &none     &none     &none     &none      &none  &none
-&none  &none  &none  &none  &none  &none                &none     &none     &none     &none      &none  &none
-&none  &none  &none  &none  &none  &none  &none  &none  &mkp MB4  &mkp MB1  &mkp MB2  &kp LG(W)  &none  &none
-&none  &none  &none  &none  &none  &none  &none  &none  &mkp MB5  &none     &none     &none      &none  &none
-&none  &none  &none  &none  &none  &none  &none  &none  &none     &none     &none     &none      &none  &none
+&none  &none  &none  &none                 &none                  &none                &none     &none      &none     &none          &none  &none
+&none  &none  &none  &none                 &none                  &none                &none     &none      &none     &none          &none  &none
+&none  &none  &none  &kp LA(LG(LEFT))      &kp LG(LA(RIGHT))      &none  &none  &none  &mkp MB4  &mkp MB1   &mkp MB2  &kp LG(W)      &none  &none
+&none  &none  &none  &kp LG(LEFT_BRACKET)  &kp LG(RIGHT_BRACKET)  &none  &none  &none  &mkp MB5  &kp LG(T)  &none     &kp LG(LS(T))  &none  &none
+&none  &none  &none  &none                 &none                  &none  &none  &none  &none     &none      &none     &none          &none  &none
             >;
         };
 
