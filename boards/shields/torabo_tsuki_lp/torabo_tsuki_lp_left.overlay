@@ -1,7 +1,14 @@
 #include "torabo_tsuki_lp.dtsi"
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
+#include <dt-bindings/input/input-event-codes.h>
 
 &trackball_listener {
     input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+
+    scroll_mode {
+        layers = <3>;
+        input-processors = <&zip_code_mapper INPUT_REL_Y INPUT_REL_WHEEL>,
+                          <&zip_code_mapper INPUT_REL_X INPUT_REL_HWHEEL>;
+    };
 };
