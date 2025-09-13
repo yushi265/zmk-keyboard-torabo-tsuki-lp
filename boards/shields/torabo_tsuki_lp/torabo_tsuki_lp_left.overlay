@@ -8,7 +8,6 @@
 
     scroll_mode {
         layers = <3>;
-        input-processors = <&zip_code_mapper INPUT_REL_Y INPUT_REL_WHEEL>,
-                          <&zip_code_mapper INPUT_REL_X INPUT_REL_HWHEEL>;
+        input-processors = <&zip_xy_to_scroll_mapper>;
     };
 };
