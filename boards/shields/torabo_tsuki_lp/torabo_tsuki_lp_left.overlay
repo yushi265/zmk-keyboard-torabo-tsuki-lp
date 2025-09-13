@@ -2,12 +2,14 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <dt-bindings/input/input-event-codes.h>
+#include "../../../config/scroll_config.dtsi"
 
 &trackball_listener {
     input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
 
     scroll_mode {
         layers = <3>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
+        input-processors = <&zip_xy_to_scroll_mapper>,
+                          <&scroll_scaler_slow 1 3>;
     };
 };
