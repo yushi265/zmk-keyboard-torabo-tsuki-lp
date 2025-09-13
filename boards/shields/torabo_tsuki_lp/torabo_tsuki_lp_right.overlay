@@ -1,9 +1,18 @@
 #include "torabo_tsuki_lp.dtsi"
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
+#include <dt-bindings/input/input-event-codes.h>
+#include "../../../config/scroll_config.dtsi"
+#include "../../../config/keymap.keymap"
 
 &trackball_listener {
     input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+
+    scroll_mode {
+        layers = <SCROLL_LAYER>;
+        input-processors = <&zip_xy_to_scroll_mapper>,
+                          <&scroll_scaler_slow 1 15>;
+    };
 };
 
 &size_s_transform {
