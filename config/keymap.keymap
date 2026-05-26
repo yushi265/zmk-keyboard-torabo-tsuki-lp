@@ -14,6 +14,37 @@
             key-positions = <28 29>;
             layers = <2>;
         };
+
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <13 14>;
+            layers = <0>;
+        };
+    };
+
+    behaviors {
+        home_row_mods_behavior: home_row_mods_behavior {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS_BEHAVIOR";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            flavor = "balanced";
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <125>;
+        };
+
+        hold_arrow_behavior: hold_arrow_behavior {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD_ARROW_BEHAVIOR";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+
+            tapping-term-ms = <180>;
+            quick-tap-ms = <0>;
+            require-prior-idle-ms = <0>;
+        };
     };
 
     keymap {
@@ -21,11 +52,11 @@
 
         layer_0 {
             bindings = <
-&none  &none      &none         &none             &none           &none                                      &none        &none  &none      &none     &none            &none
-&none  &kp Q      &kp W         &kp E             &kp R           &kp T                                      &kp Y        &kp U  &kp I      &kp O     &kp P            &none
-&none  &kp A      &kp S         &kp D             &kp F           &kp G        &none          &none          &kp H        &kp J  &lt 3 K    &kp L     &lt 2 SEMICOLON  &none
-&none  &kp Z      &kp X         &kp C             &kp V           &kp B        &kp LG(SPACE)  &kp ESC        &kp N        &kp M  &kp COMMA  &kp DOT   &lt 4 SLASH      &none
-&none  &kp LCTRL  &kp LEFT_ALT  &kp LEFT_COMMAND  &kp LEFT_SHIFT  &lt 5 SPACE  &kp TAB        &kp BACKSPACE  &lt 1 ENTER  &none  &none      &kp RGUI  &kp LC(SPACE)    &none
+&none  &none                                   &none         &none             &none           &none                                      &none        &none  &none      &none     &none                         &none
+&none  &kp Q                                   &kp W         &kp E             &kp R           &kp T                                      &kp Y        &kp U  &kp I      &kp O     &kp P                         &none
+&none  &home_row_mods_behavior LEFT_CONTROL A  &kp S         &kp D             &kp F           &kp G        &none          &none          &kp H        &kp J  &kp K      &kp L     &lt 2 SEMICOLON               &none
+&none  &kp Z                                   &kp X         &kp C             &kp V           &kp B        &kp LG(SPACE)  &kp ESC        &kp N        &kp M  &kp COMMA  &kp DOT   &hold_arrow_behavior 3 SLASH  &none
+&none  &kp LEFT_CONTROL                        &kp LEFT_ALT  &kp LEFT_COMMAND  &kp LEFT_SHIFT  &lt 4 SPACE  &kp TAB        &kp BACKSPACE  &lt 1 ENTER  &none  &none      &kp RGUI  &kp LC(SPACE)                 &none
             >;
         };
 
@@ -41,11 +72,11 @@
 
         layer_2 {
             bindings = <
-&none  &none  &none  &none                 &none                  &none                     &none     &none      &none     &none          &none  &none
-&none  &none  &none  &none                 &none                  &none                     &none     &none      &none     &none          &none  &none
-&none  &none  &none  &kp LA(LG(LEFT))      &kp LG(LA(RIGHT))      &none  &none       &none  &mkp MB4  &mkp MB1   &mkp MB2  &kp LG(W)      &none  &none
-&none  &none  &none  &kp LG(LEFT_BRACKET)  &kp LG(RIGHT_BRACKET)  &none  &none       &none  &mkp MB5  &kp LG(T)  &none     &kp LG(LS(T))  &none  &none
-&none  &none  &none  &none                 &none                  &none  &kp ESCAPE  &none  &none     &none      &none     &none          &none  &none
+&none  &none  &none  &none                 &none                  &none                                &none     &none      &none     &none          &none  &none
+&none  &none  &none  &none                 &none                  &none                                &none     &none      &none     &none          &none  &none
+&none  &none  &none  &kp LA(LG(LEFT))      &kp LG(LA(RIGHT))      &kp LA(LG(UP))    &none       &none  &mkp MB4  &mkp MB1   &mkp MB2  &kp LG(W)      &none  &none
+&none  &none  &none  &kp LG(LEFT_BRACKET)  &kp LG(RIGHT_BRACKET)  &kp LA(LG(DOWN))  &none       &none  &mkp MB5  &kp LG(T)  &none     &kp LG(LS(T))  &none  &none
+&none  &none  &none  &none                 &none                  &none             &kp ESCAPE  &none  &none     &none      &none     &none          &none  &none
             >;
         };
 
@@ -53,29 +84,19 @@
             bindings = <
 &none  &none  &none  &none  &none  &none                         &none  &none         &none         &none         &none         &none
 &none  &none  &none  &none  &none  &bt BT_CLR_ALL                &none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &none
+&none  &none  &none  &none  &none  &none           &none  &none  &none  &none         &kp UP_ARROW  &none         &none         &none
+&none  &none  &none  &none  &none  &none           &none  &none  &none  &kp LEFT      &kp DOWN      &kp RIGHT     &none         &none
 &none  &none  &none  &none  &none  &none           &none  &none  &none  &none         &none         &none         &none         &none
-&none  &none  &none  &none  &none  &none           &none  &none  &none  &none         &none         &none         &none         &none
-&none  &none  &none  &none  &none  &none           &none  &none  &none  &none         &none         &none         &none         &none
-            >;
-        };
-
-        layer_4 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans    &trans    &trans     &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans    &trans    &trans     &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &kp UP    &trans     &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans  &trans
             >;
         };
 
         layer_5 {
             bindings = <
-&none  &none          &none  &none                 &none                  &none                  &none  &none  &none  &none  &none              &none
-&none  &none          &none  &none                 &none                  &none                  &none  &none  &none  &none  &none              &none
-&none  &kp GRAVE      &none  &kp LA(LG(LEFT))      &kp LG(LA(RIGHT))      &none  &none    &none  &none  &none  &none  &none  &kp BACKSLASH      &none
-&none  &kp LS(GRAVE)  &none  &kp LG(LEFT_BRACKET)  &kp LG(RIGHT_BRACKET)  &none  &none    &none  &none  &none  &none  &none  &kp LS(BACKSLASH)  &none
-&none  &none          &none  &none                 &none                  &none  &kp ESC  &none  &none  &none  &none  &none  &none              &none
+&none  &none          &none  &none                 &none                  &none                             &none     &none     &none   &none      &none              &none
+&none  &none          &none  &none                 &none                  &none                             &none     &none     &none   &none      &none              &none
+&none  &kp GRAVE      &none  &kp LA(LG(LEFT))      &kp LG(LA(RIGHT))      &kp LG(LA(UP))    &none    &none  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &kp BACKSLASH      &none
+&none  &kp LS(GRAVE)  &none  &kp LG(LEFT_BRACKET)  &kp LG(RIGHT_BRACKET)  &kp LG(LA(DOWN))  &none    &none  &none     &none     &none   &none      &kp LS(BACKSLASH)  &none
+&none  &none          &none  &none                 &none                  &none             &kp ESC  &none  &none     &none     &none   &none      &none              &none
             >;
         };
     };
